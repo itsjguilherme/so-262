@@ -7,8 +7,6 @@
 
 ## 1. Visão Geral e Arquitetura do Simulador
 
-> Base teórica: Tanenbaum & Bos, *Sistemas Operacionais Modernos*, 4ª ed., Cap. 2 — modelo de processo como CPU virtual com contador de programa próprio (seção 2.1.1, p. 60) e tabela de processos como estrutura de nível mais baixo do núcleo (Figura 2.3, p. 65).
-
 ### 1.1 Objetivo
 
 O projeto consiste na especificação de um simulador de gerenciamento de processos capaz de representar, de forma simplificada, as principais responsabilidades de um sistema operacional relacionadas à criação, execução, bloqueio, escalonamento e término de processos.
@@ -126,8 +124,6 @@ A simulação terminará quando todos os processos definidos na entrada atingire
 
 ## 2. Especificação do Bloco de Controle de Processo (PCB) e Tabela de Processos
 
-> Base teórica: os campos do PCB abaixo seguem o mesmo espírito da entrada típica da tabela de processos descrita na Figura 2.4 (p. 65) — registradores, contador de programa, estado, prioridade, tempo de CPU usado —, com os campos de tempo de espera e de bloqueio adicionados por exigência do enunciado da atividade.
-
 ### 2.1 Estados possíveis
 
 Cada processo deverá estar em exatamente um dos seguintes estados:
@@ -243,8 +239,6 @@ Processos terminados deverão permanecer disponíveis até o fim da simulação 
 ---
 
 ## 3. Ciclo de Vida e Grafo de Transição de Estados
-
-> Base teórica: as transições PRONTO↔EXECUTANDO↔BLOQUEADO reproduzem exatamente as quatro transições numeradas da Figura 2.2 (p. 64) do livro. Os estados NOVO e TERMINADO foram adicionados como estados de borda, já que o enunciado exige especificar também as transições de criação (`fork`) e término (`exit`), que o diagrama de três estados do livro não cobre isoladamente.
 
 ### 3.1 Grafo geral
 
@@ -404,8 +398,6 @@ Para simplificar o modelo, a troca de contexto terá **custo zero** e não consu
 
 ## 4. Especificação do Escalonador de CPU
 
-> Base teórica: Round Robin segue a seção 2.4.3 "Escalonamento por chaveamento circular" (p. 109-110); o escalonamento por prioridades e a preempção seguem a seção 2.4.3 "Escalonamento por prioridades" (p. 110-111). A separação entre a interface comum do escalonador (seção 4.1) e cada algoritmo concreto segue o princípio de política versus mecanismo discutido na seção 2.4.5 (p. 114).
-
 ### 4.1 Interface comum
 
 Todos os algoritmos de escalonamento deverão implementar um contrato equivalente a:
@@ -489,8 +481,6 @@ A convenção adotada será:
 9 = prioridade mais baixa
 ```
 
-Essa convenção (número menor = prioridade maior) é uma decisão de projeto da equipe, diferente do exemplo usado no livro (p. 110), no qual prioridades mais altas recebem números maiores (ex.: general = 100, coronel = 90). Ambas as convenções são equivalentes em termos de comportamento do escalonador — trocam apenas o sinal da comparação —; optamos por número menor = prioridade maior por ser a convenção mais comum em sistemas reais (é assim que funciona o `nice` do UNIX, mencionado no capítulo, p. 111).
-
 Exemplo:
 
 ```text
@@ -544,9 +534,7 @@ P2: PRONTO -> EXECUTANDO
 
 ### 4.6 Prevenção de starvation com aging
 
-Para impedir inanição, será utilizado aging: a cada intervalo de espera, a prioridade efetiva do processo pronto melhora, até ele ser despachado.
-
-Observação: no capítulo 2 do livro (p. 110), a estratégia usada como exemplo para evitar que um processo de prioridade alta monopolize a CPU é diferente — o escalonador diminui a prioridade do processo *em execução* a cada interrupção de relógio, até ela cair abaixo da do próximo processo pronto. O livro também usa o termo "aging" (p. 112), mas em outro contexto (estimar a duração do próximo surto de CPU a partir do histórico). A técnica que adotamos aqui — subir a prioridade de quem está esperando — é a forma mais usual de aging para prevenção de starvation na literatura de SO em geral, e atende diretamente ao que o enunciado da atividade pede; só não é uma transcrição literal do mecanismo do Tanenbaum, e vale deixar isso claro caso o professor pergunte.
+Para impedir inanição, será utilizado aging.
 
 Cada processo pronto manterá:
 
