@@ -25,8 +25,7 @@ Na execução, P1 é o primeiro que cabe (precisa de [1, 2, 2]). Depois que ele 
 A saída confirma que o estado é seguro, com a sequência P1 -> P3 -> P0 -> P2 -> P4.
 
 <img src="01-estado-inicial.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
-(01-estado-inicial.png)
-(02-estado-seguro.png)
+<img src="02-estado-seguro.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
 
 ## Teste 2: P1 pede [1, 0, 2]
 
@@ -36,8 +35,8 @@ Com isso ele faz uma alocação provisória. Os disponíveis caem para [2, 3, 0]
 
 Na saída aparece primeiro o aviso de tentativa provisória, depois os passos da verificação e no fim a mensagem de requisição concedida. A tabela impressa logo depois já mostra o P1 com [3, 0, 2] e os disponíveis em [2, 3, 0].
 
-(03-requisicao-p1.png)
-(04-p1-estado-atualizado.png)
+<img src="03-requisicao-p1.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
+<img src="04-p1-estado-atualizado.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
 
 ## Teste 3: P4 pede [3, 3, 0]
 
@@ -47,7 +46,8 @@ A saída mostra a mensagem de processo bloqueado indicando que pediu 3 de R0 e s
 
 Vale comentar que no código esse teste está descrito como "requisição insegura", mas na prática ele cai no bloqueio por falta de recurso, antes de chegar na verificação de segurança.
 
-(05-p4-bloqueado.png)
+<img src="05-p4-bloqueado.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
+
 ## Conclusão
 
 Os testes mostram as três situações que o algoritmo trata: conferir se o estado é seguro, conceder um pedido que não coloca o sistema em risco e fazer um processo esperar quando não há recurso suficiente. A ideia é sempre só liberar recursos quando dá para garantir que todo mundo ainda consegue terminar, evitando o deadlock.
