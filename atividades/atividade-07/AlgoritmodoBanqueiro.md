@@ -23,6 +23,8 @@ Primeiro o programa verifica se, do jeito que está, existe alguma ordem em que 
 Na execução, P1 é o primeiro que cabe (precisa de [1, 2, 2]). Depois que ele devolve [2, 0, 0], o Work vai para [5, 3, 2] e aí P3 consegue rodar. Seguindo assim, entram P0, P2 e por último P4, e o Work termina em [10, 5, 7], que é exatamente o total do sistema.
 
 A saída confirma que o estado é seguro, com a sequência P1 -> P3 -> P0 -> P2 -> P4.
+
+<img src="01-estado-inicial.png" width="720" alt="Tela inicial de A.U.F.A. Solar">
 (01-estado-inicial.png)
 (02-estado-seguro.png)
 
