@@ -23,9 +23,8 @@ Primeiro o programa verifica se, do jeito que está, existe alguma ordem em que 
 Na execução, P1 é o primeiro que cabe (precisa de [1, 2, 2]). Depois que ele devolve [2, 0, 0], o Work vai para [5, 3, 2] e aí P3 consegue rodar. Seguindo assim, entram P0, P2 e por último P4, e o Work termina em [10, 5, 7], que é exatamente o total do sistema.
 
 A saída confirma que o estado é seguro, com a sequência P1 -> P3 -> P0 -> P2 -> P4.
-
-![Estado inicial e verificação](prints/01-estado-inicial.jpeg)
-![Fim da verificação inicial](prints/02-estado-seguro.jpeg)
+(01-estado-inicial.png)
+(02-estado-seguro.png)
 
 ## Teste 2: P1 pede [1, 0, 2]
 
@@ -35,8 +34,8 @@ Com isso ele faz uma alocação provisória. Os disponíveis caem para [2, 3, 0]
 
 Na saída aparece primeiro o aviso de tentativa provisória, depois os passos da verificação e no fim a mensagem de requisição concedida. A tabela impressa logo depois já mostra o P1 com [3, 0, 2] e os disponíveis em [2, 3, 0].
 
-![Requisição de P1 concedida](prints/03-requisicao-p1.jpeg)
-![Estado depois da requisição de P1](prints/04-p1-estado-atualizado.jpeg)
+(03-requisicao-p1.png)
+(04-p1-estado-atualizado.png)
 
 ## Teste 3: P4 pede [3, 3, 0]
 
@@ -46,8 +45,7 @@ A saída mostra a mensagem de processo bloqueado indicando que pediu 3 de R0 e s
 
 Vale comentar que no código esse teste está descrito como "requisição insegura", mas na prática ele cai no bloqueio por falta de recurso, antes de chegar na verificação de segurança.
 
-![P4 bloqueado](prints/05-p4-bloqueado.jpeg)
-
+(05-p4-bloqueado.png)
 ## Conclusão
 
 Os testes mostram as três situações que o algoritmo trata: conferir se o estado é seguro, conceder um pedido que não coloca o sistema em risco e fazer um processo esperar quando não há recurso suficiente. A ideia é sempre só liberar recursos quando dá para garantir que todo mundo ainda consegue terminar, evitando o deadlock.
